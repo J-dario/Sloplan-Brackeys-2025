@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="Sloplan"
+run/main_scene="uid://we0fibcjxv2b"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
