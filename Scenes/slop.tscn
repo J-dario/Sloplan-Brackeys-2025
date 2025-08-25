@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://dpfyqglfldaoq"]
+
+[ext_resource type="Material" uid="uid://cltpdtf8v3h4o" path="res://Materials/BasicSlop.tres" id="2_gihk0"]
+[ext_resource type="ArrayMesh" uid="uid://cry1s7hi1f2wr" path="res://Models/slop.obj" id="3_34oew"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_gihk0"]
+height = 1.065
+radius = 1.2
+
+[node name="Slop" type="Node3D"]
+
+[node name="Slop" type="MeshInstance3D" parent="."]
+mesh = ExtResource("3_34oew")
+surface_material_override/0 = ExtResource("2_gihk0")
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
+shape = SubResource("CylinderShape3D_gihk0")
