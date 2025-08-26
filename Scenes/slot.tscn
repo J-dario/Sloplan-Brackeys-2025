@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=3 uid="uid://dckt1vn4p32kl"]
+
+[ext_resource type="Script" uid="uid://b0nrqr2hjf836" path="res://Scenes/slot.gd" id="1_luhj6"]
+[ext_resource type="AudioStream" uid="uid://bjux2o344ntif" path="res://audio/multhit1.ogg" id="2_67ou1"]
+[ext_resource type="AudioStream" uid="uid://0punb8a7oim8" path="res://audio/multhit2.ogg" id="3_c828r"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_hcq3f"]
+radius = 0.3
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_luhj6"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_12ej0"]
+size = Vector3(0.161987, 1, 1)
+
+[node name="Slot" type="Node3D"]
+script = ExtResource("1_luhj6")
+
+[node name="Multhit1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_67ou1")
+
+[node name="Multhit2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_c828r")
+
+[node name="Detector" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Detector"]
+shape = SubResource("SphereShape3D_hcq3f")
+debug_color = Color(0, 0.6, 0.701961, 1)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Detector"]
+size = Vector3(0.5, 0.5, 0.5)
+material = SubResource("StandardMaterial3D_luhj6")
+
+[node name="Blocker" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Blocker"]
+shape = SubResource("BoxShape3D_12ej0")
+disabled = true
+debug_color = Color(0, 0.6, 0.701961, 1)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Blocker"]
+size = Vector3(0.146484, 0.994141, 0.953369)
+material = SubResource("StandardMaterial3D_luhj6")
+
+[connection signal="body_entered" from="Detector" to="." method="_on_detector_body_entered"]

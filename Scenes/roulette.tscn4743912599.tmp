@@ -1,9 +1,8 @@
-[gd_scene load_steps=16 format=4 uid="uid://caicdpy2vlhiq"]
+[gd_scene load_steps=14 format=4 uid="uid://caicdpy2vlhiq"]
 
 [ext_resource type="Script" uid="uid://6pb5q3by4k5x" path="res://Scenes/roulette.gd" id="1_sxnde"]
 [ext_resource type="Texture2D" uid="uid://wqntpbs7fv70" path="res://Models/wood.png" id="1_u7vc4"]
 [ext_resource type="Texture2D" uid="uid://di3im6xatva1n" path="res://Models/wheel.png" id="2_sxnde"]
-[ext_resource type="PackedScene" uid="uid://dckt1vn4p32kl" path="res://Scenes/slot.tscn" id="4_l12oi"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l12oi"]
 albedo_texture = ExtResource("1_u7vc4")
@@ -84,9 +83,6 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_ccvf6")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_sxnde"]
-size = Vector3(0.0583496, 1.4043, 7.1582)
-
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_sxnde"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
 ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -101,13 +97,10 @@ tonemap_mode = 2
 
 [node name="RouletteWheel" type="Node3D"]
 script = ExtResource("1_sxnde")
-main_edge_pos = Vector3(4, 0, 0)
-
-[node name="SlotPoint" parent="." instance=ExtResource("4_l12oi")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.6, 0.274, 0)
+default_circle_spin_speed = null
 
 [node name="EdgePoint" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0.3, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8, 0, 0)
 
 [node name="Wood" type="Node3D" parent="."]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
@@ -118,84 +111,16 @@ mesh = SubResource("ArrayMesh_nloww")
 skeleton = NodePath("")
 
 [node name="Circle" type="Node3D" parent="."]
-transform = Transform3D(0.99992, 0, 0, 0, 1, 0, 0, 0, 0.99992, 0, -0.386259, 0)
-
-[node name="TempSprite" type="Sprite3D" parent="Circle"]
-transform = Transform3D(1.39278, -0.240534, 5.36219e-07, 0, -5.04567e-09, -5.88703, 0.245584, 1.36413, -3.04105e-06, 0, 0.501, 0)
-texture_filter = 0
-texture = ExtResource("2_sxnde")
 
 [node name="Mesh" type="MeshInstance3D" parent="Circle"]
 transform = Transform3D(6, 0, 0, 0, 0.5, 0, 0, 0, 6, 0, 0, 0)
 mesh = SubResource("ArrayMesh_s0cc2")
 skeleton = NodePath("")
 
-[node name="Colliders" type="Node3D" parent="Circle"]
-
-[node name="Wall0" type="StaticBody3D" parent="Circle/Colliders"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.263364, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Circle/Colliders/Wall0"]
-shape = SubResource("BoxShape3D_sxnde")
-debug_color = Color(1, 1, 1, 1)
-
-[node name="Wall1" type="StaticBody3D" parent="Circle/Colliders"]
-transform = Transform3D(0.939693, 0, 0.34202, 0, 1, 0, -0.34202, 0, 0.939693, 0, 0.263364, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Circle/Colliders/Wall1"]
-shape = SubResource("BoxShape3D_sxnde")
-debug_color = Color(1, 1, 1, 1)
-
-[node name="Wall2" type="StaticBody3D" parent="Circle/Colliders"]
-transform = Transform3D(0.766044, 0, 0.642788, 0, 1, 0, -0.642788, 0, 0.766044, 0, 0.263364, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Circle/Colliders/Wall2"]
-shape = SubResource("BoxShape3D_sxnde")
-debug_color = Color(1, 1, 1, 1)
-
-[node name="Wall3" type="StaticBody3D" parent="Circle/Colliders"]
-transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, 0, 0.263364, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Circle/Colliders/Wall3"]
-shape = SubResource("BoxShape3D_sxnde")
-debug_color = Color(1, 1, 1, 1)
-
-[node name="Wall4" type="StaticBody3D" parent="Circle/Colliders"]
-transform = Transform3D(0.172256, 0, 0.985052, 0, 1, 0, -0.985052, 0, 0.172256, 0, 0.263364, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Circle/Colliders/Wall4"]
-shape = SubResource("BoxShape3D_sxnde")
-debug_color = Color(1, 1, 1, 1)
-
-[node name="Wall5" type="StaticBody3D" parent="Circle/Colliders"]
-transform = Transform3D(-0.17504, 0, 0.984561, 0, 1, 0, -0.984561, 0, -0.17504, 0, 0.263364, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Circle/Colliders/Wall5"]
-shape = SubResource("BoxShape3D_sxnde")
-debug_color = Color(1, 1, 1, 1)
-
-[node name="Wall6" type="StaticBody3D" parent="Circle/Colliders"]
-transform = Transform3D(-0.501224, 0, 0.865318, 0, 1, 0, -0.865318, 0, -0.501224, 0, 0.263364, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Circle/Colliders/Wall6"]
-shape = SubResource("BoxShape3D_sxnde")
-debug_color = Color(1, 1, 1, 1)
-
-[node name="Wall7" type="StaticBody3D" parent="Circle/Colliders"]
-transform = Transform3D(-0.766952, 0, 0.641704, 0, 1, 0, -0.641704, 0, -0.766952, 0, 0.263364, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Circle/Colliders/Wall7"]
-shape = SubResource("BoxShape3D_sxnde")
-debug_color = Color(1, 1, 1, 1)
-
-[node name="Wall8" type="StaticBody3D" parent="Circle/Colliders"]
-transform = Transform3D(-0.939693, 0, 0.34202, 0, 1, 0, -0.34202, 0, -0.939693, 0, 0.263364, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Circle/Colliders/Wall8"]
-shape = SubResource("BoxShape3D_sxnde")
-debug_color = Color(1, 1, 1, 1)
-
-[node name="Slots" type="Node3D" parent="Circle"]
+[node name="TempSprite" type="Sprite3D" parent="Circle"]
+transform = Transform3D(1.39278, -0.240534, 5.36219e-07, 0, -5.04567e-09, -5.88703, 0.245584, 1.36413, -3.04105e-06, 0, 0.501, 0)
+texture_filter = 0
+texture = ExtResource("2_sxnde")
 
 [node name="DeleteThis1" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_rk1qt")
@@ -205,4 +130,8 @@ transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75
 shadow_enabled = true
 
 [node name="DeleteThis3" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.504814, 0.863228, 0, -0.863228, 0.504814, 0, 3.93075, 3.08821)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 6.53754, 0)
+
+[node name="Ball" type="CSGSphere3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.352607, 3.90857)
+radius = 0.3

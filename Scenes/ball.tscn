@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://kd0sacqjjb7a"]
+
+[ext_resource type="Script" uid="uid://g8sgq13fqbi6" path="res://Scenes/ball.gd" id="1_d60mj"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_d60mj"]
+radius = 0.3
+
+[node name="Ball" type="CharacterBody3D"]
+script = ExtResource("1_d60mj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_d60mj")
+
+[node name="Mesh" type="CSGSphere3D" parent="."]
+radius = 0.3
