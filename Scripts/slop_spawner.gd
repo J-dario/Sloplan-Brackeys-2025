@@ -15,6 +15,7 @@ func _input(event: InputEvent):
 		spawnSlop(100, 0)
 	elif event.is_action_pressed("test"):
 		removeSlop(77)
+	elif event.is_action_pressed("test2"):
 		game_manager.loseGames()
 
 func spawnSlop(amount: int, flag: bool):
