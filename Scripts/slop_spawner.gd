@@ -19,7 +19,6 @@ func _input(event: InputEvent):
 func spawnSlop(amount: int, flag: bool):
 	if !flag:
 		game_manager.addPlayerSlop(amount)
-		print("You Have: ", game_manager.getPlayerSlop())
 	var prismaticCount = floor(amount / 100)
 	var goldCount = floor((amount % 100) / 10)
 	var basicCount = amount % 10
@@ -69,9 +68,6 @@ func removeSlop(amount: int):
 			amount -= 1
 		if amount <= 0:
 			break
-	
-	print("You Have: ", game_manager.getPlayerSlop())
-
 
 func spawnSlopType(type: int):
 	var instance = SLOP.instantiate()

@@ -126,3 +126,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.35, 0, -0.349998)
 shape = SubResource("BoxShape3D_jjvhh")
 
 [node name="SlopContainer" type="Node3D" parent="SlopSpawner"]
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Slop: "
