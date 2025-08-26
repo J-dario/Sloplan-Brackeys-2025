@@ -76,4 +76,5 @@ func handleLook(direction: int):
 
 func lock():
 	canMove = false
+	handleZoom(0)
 	targetRotationY = deg_to_rad(90)
