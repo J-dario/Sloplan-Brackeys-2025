@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://we0fibcjxv2b"]
+[gd_scene load_steps=9 format=3 uid="uid://we0fibcjxv2b"]
 
 [ext_resource type="Script" uid="uid://ulq0s6wq85wc" path="res://Scripts/camera_3d.gd" id="1_jjgbg"]
+[ext_resource type="Script" uid="uid://b0xqbfe3c45cv" path="res://Scripts/game_manager.gd" id="1_jjvhh"]
 [ext_resource type="PackedScene" uid="uid://caicdpy2vlhiq" path="res://Scenes/roulette.tscn" id="2_bo1nx"]
 [ext_resource type="Script" uid="uid://cilqupfc5jekm" path="res://Scripts/slop_spawner.gd" id="3_8gbba"]
 
@@ -22,6 +23,7 @@ size = Vector3(12.7, 1, 19.1)
 [node name="Node3D" type="Node3D"]
 
 [node name="GameManager" type="Node3D" parent="."]
+script = ExtResource("1_jjvhh")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_bo1nx")

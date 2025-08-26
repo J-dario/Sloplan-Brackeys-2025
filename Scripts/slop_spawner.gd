@@ -4,6 +4,7 @@ const SLOP = preload("res://Scenes/slop.tscn")
 const GOLD_SLOP = preload("res://Textures/goldSlop.png")
 const PRISMATIC_SLOP = preload("res://Textures/prismaticSlop.png")
 
+@onready var game_manager: Node3D = $"../GameManager"
 @onready var slopContainer: Node3D = $SlopContainer
 @onready var spawnArea: CollisionShape3D = $SpawnArea/CollisionShape3D
 
@@ -11,11 +12,14 @@ var spawnPoint
 
 func _input(event: InputEvent):
 	if event.is_action_pressed("zoomIn"):
-		spawnSlop(100)
+		spawnSlop(100, 0)
 	elif event.is_action_pressed("test"):
 		removeSlop(77)
 
-func spawnSlop(amount: int):
+func spawnSlop(amount: int, flag: bool):
+	if !flag:
+		game_manager.addPlayerSlop(amount)
+		print("You Have: ", game_manager.getPlayerSlop())
 	var prismaticCount = floor(amount / 100)
 	var goldCount = floor((amount % 100) / 10)
 	var basicCount = amount % 10
@@ -28,6 +32,11 @@ func spawnSlop(amount: int):
 		spawnSlopType(0)
 	
 func removeSlop(amount: int):
+	if game_manager.getPlayerSlop() < amount:
+		print("Error: Not enough slop to remove")
+		return
+
+	game_manager.removePlayerSlop(amount)
 	var prismatic_nodes = findSlops("prismatic")
 	var gold_nodes = findSlops("gold")
 	var basic_nodes = findSlops("basic")
@@ -39,7 +48,7 @@ func removeSlop(amount: int):
 		elif amount > 0:
 			var remaining_value = 100 - amount
 			prismatic_nodes[i].queue_free()
-			spawnSlop(remaining_value)
+			spawnSlop(remaining_value, 1)
 			amount = 0
 			break
 
@@ -50,7 +59,7 @@ func removeSlop(amount: int):
 		elif amount > 0:
 			var remaining_value = 10 - amount
 			gold_nodes[i].queue_free()
-			spawnSlop(remaining_value)
+			spawnSlop(remaining_value, 1)
 			amount = 0
 			break
 
@@ -60,6 +69,9 @@ func removeSlop(amount: int):
 			amount -= 1
 		if amount <= 0:
 			break
+	
+	print("You Have: ", game_manager.getPlayerSlop())
+
 
 func spawnSlopType(type: int):
 	var instance = SLOP.instantiate()
