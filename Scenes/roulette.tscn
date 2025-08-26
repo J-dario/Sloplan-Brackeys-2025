@@ -1,6 +1,6 @@
 [gd_scene load_steps=16 format=4 uid="uid://caicdpy2vlhiq"]
 
-[ext_resource type="Script" uid="uid://6pb5q3by4k5x" path="res://Scenes/roulette.gd" id="1_sxnde"]
+[ext_resource type="Script" uid="uid://6pb5q3by4k5x" path="res://Scripts/roulette.gd" id="1_sxnde"]
 [ext_resource type="Texture2D" uid="uid://wqntpbs7fv70" path="res://Models/wood.png" id="1_u7vc4"]
 [ext_resource type="Texture2D" uid="uid://di3im6xatva1n" path="res://Models/wheel.png" id="2_sxnde"]
 [ext_resource type="PackedScene" uid="uid://dckt1vn4p32kl" path="res://Scenes/slot.tscn" id="4_l12oi"]

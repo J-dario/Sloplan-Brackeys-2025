@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://dpfyqglfldaoq"]
+[gd_scene load_steps=7 format=3 uid="uid://cbqej5afvr1as"]
 
 [ext_resource type="Material" uid="uid://cltpdtf8v3h4o" path="res://Materials/BasicSlop.tres" id="2_gihk0"]
 [ext_resource type="ArrayMesh" uid="uid://cry1s7hi1f2wr" path="res://Models/slop.obj" id="3_34oew"]
@@ -7,14 +7,54 @@
 height = 1.065
 radius = 1.2
 
-[node name="Slop" type="Node3D"]
+[sub_resource type="Animation" id="Animation_x7ao1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RigidBody3D/SlopMesh:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
 
-[node name="Slop" type="MeshInstance3D" parent="."]
+[sub_resource type="Animation" id="Animation_gihk0"]
+resource_name = "pulse"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RigidBody3D/SlopMesh:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.133333, 0.266667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(1, 1, 1), Vector3(1.2, 1.2, 1.2), Vector3(1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7qaor"]
+_data = {
+&"RESET": SubResource("Animation_x7ao1"),
+&"pulse": SubResource("Animation_gihk0")
+}
+
+[node name="RigidBody3D" type="RigidBody3D"]
+
+[node name="SlopMesh" type="MeshInstance3D" parent="."]
 mesh = ExtResource("3_34oew")
+skeleton = NodePath("../..")
 surface_material_override/0 = ExtResource("2_gihk0")
 
-[node name="RigidBody3D" type="RigidBody3D" parent="."]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
 shape = SubResource("CylinderShape3D_gihk0")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_7qaor")
+}

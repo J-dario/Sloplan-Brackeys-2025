@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://cvc8xceq6gy0a"]
+
+[ext_resource type="Material" uid="uid://b0oi4ofbpw86d" path="res://Materials/SlopLan.tres" id="1_mveji"]
+[ext_resource type="ArrayMesh" uid="uid://3s7tga1gee7e" path="res://Models/slopLanTest.obj" id="2_ejwix"]
+
+[node name="SlopLan" type="Node3D"]
+
+[node name="SlopLanTest" type="MeshInstance3D" parent="."]
+material_override = ExtResource("1_mveji")
+mesh = ExtResource("2_ejwix")
