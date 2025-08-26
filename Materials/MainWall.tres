@@ -1,11 +1,11 @@
 [gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://cd0ugjc3kyuh7"]
 
-[ext_resource type="Texture2D" uid="uid://bjdd3au4be7wg" path="res://Textures/goldSlop.png" id="1_kdoc0"]
+[ext_resource type="Texture2D" uid="uid://c0wyb7ns6626h" path="res://Textures/BasicWall.png" id="1_qh37i"]
 
 [resource]
 resource_name = "Material.001"
 cull_mode = 2
-albedo_texture = ExtResource("1_kdoc0")
-metallic = 1.0
+albedo_texture = ExtResource("1_qh37i")
 metallic_specular = 0.0
 roughness = 0.6
+texture_filter = 0
