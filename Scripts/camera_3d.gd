@@ -10,6 +10,7 @@ var zoomSpeed: float = 6.0
 var targetZoomPos: Vector3
 var targetZoomRot: Vector3
 var zoomed = false
+var canMove = true
 
 func _ready():
 	targetRotationY = rotation.y
@@ -24,14 +25,15 @@ func _process(delta: float):
 	rotation.z = lerp_angle(rotation.z, targetZoomRot.z, zoomSpeed * delta)
 	
 func _input(event: InputEvent):
-	if event.is_action_pressed("lookRight"):
-		handleLook(45)
-	elif event.is_action_pressed("lookLeft"):
-		handleLook(-45)
-	elif event.is_action_pressed("zoomIn"):
-		handleZoom(1)
-	elif event.is_action_pressed("zoomOut"):
-		handleZoom(0)
+	if canMove:
+		if event.is_action_pressed("lookRight"):
+			handleLook(45)
+		elif event.is_action_pressed("lookLeft"):
+			handleLook(-45)
+		elif event.is_action_pressed("zoomIn"):
+			handleZoom(1)
+		elif event.is_action_pressed("zoomOut"):
+			handleZoom(0)
 
 func handleZoom(direction: int):
 	if direction == 0:
@@ -71,3 +73,7 @@ func handleLook(direction: int):
 		
 	targetRotationY += deg_to_rad(direction)
 	print(currentState)
+
+func lock():
+	canMove = false
+	targetRotationY = deg_to_rad(90)

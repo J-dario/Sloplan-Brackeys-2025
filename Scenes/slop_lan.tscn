@@ -1,10 +1,54 @@
-[gd_scene load_steps=3 format=3 uid="uid://cvc8xceq6gy0a"]
+[gd_scene load_steps=7 format=3 uid="uid://cvc8xceq6gy0a"]
 
+[ext_resource type="Script" uid="uid://xsc3dylpqkpk" path="res://Scripts/slop_lan.gd" id="1_ejwix"]
 [ext_resource type="Material" uid="uid://b0oi4ofbpw86d" path="res://Materials/SlopLan.tres" id="1_mveji"]
 [ext_resource type="ArrayMesh" uid="uid://3s7tga1gee7e" path="res://Models/slopLanTest.obj" id="2_ejwix"]
 
+[sub_resource type="Animation" id="Animation_ejwix"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SlopLanTest:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_mveji"]
+resource_name = "lose"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SlopLanTest:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(30, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_l2h6o"]
+_data = {
+&"RESET": SubResource("Animation_ejwix"),
+&"lose": SubResource("Animation_mveji")
+}
+
 [node name="SlopLan" type="Node3D"]
+script = ExtResource("1_ejwix")
 
 [node name="SlopLanTest" type="MeshInstance3D" parent="."]
 material_override = ExtResource("1_mveji")
 mesh = ExtResource("2_ejwix")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_l2h6o")
+}
